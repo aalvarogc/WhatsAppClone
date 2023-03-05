@@ -24,7 +24,7 @@
 <body>
     <div class="container" id="homeContainer">
         <nav class="nav">
-            <img src="https://icones.pro/wp-content/uploads/2021/02/icone-du-logo-whatsapp-violet.png" alt="">
+            <i class="fa-brands fa-whatsapp"></i>
             <h1>Whatsapp 2</h1>
         </nav>
         <div class="container-userForm">
@@ -81,18 +81,18 @@
 
             $(".container").html(`
                 <nav class="nav">
-                    <img src="https://icones.pro/wp-content/uploads/2021/02/icone-du-logo-whatsapp-violet.png" alt="">
+                    <i class="fa-brands fa-whatsapp"></i>
                     <h1>Whatsapp 2</h1>
                 </nav>
                 <div class="whatsapp-container">
+                    <div id="roomName">
+                            SALA ${room} - Usuarios conectados: <span id="usersConnected"></span>
+                        </div>
                     <div class="users">
                         <h2 class="leftRoom">Abandonar Sala <i class="fa-solid fa-right-from-bracket"></i></h2>
                         <div class="usersConnected"></div>
                     </div>
                     <div class="messagesCont">
-                        <div id="roomName">
-                            SALA ${room} - Usuarios conectados: <span id="usersConnected"></span>
-                        </div>
                         <div class="messages">
                         </div>
                         <form action="" id="form">
@@ -101,6 +101,8 @@
                         </form>
                     </div>
                 </div>
+                <div class="mobileUsersConnected"></div>
+                <span class="usersBtn"><i class="fa-solid fa-xmark"></i></span>
             `);
         })
 
@@ -123,8 +125,23 @@
         socket.on('usersConnected', (users)=>{
             $(".usersConnected").html("");
             for(user of users){
-                console.log(user);
                 $(".usersConnected").append(`
+                <div class="user">
+                    <img src="${user.userImg}">
+                    <div class="user-info">
+                        <span class="user-info-name">${user.username}</span>    
+                        <span class="isTyping">escribiendo...</span>
+                        <input type="hidden" id="${user.userID}"/>
+                    </div>
+                </div>
+                `);
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        })
+        socket.on('usersConnected', (users)=>{
+            $(".mobileUsersConnected").html("");
+            for(user of users){
+                $(".mobileUsersConnected").append(`
                 <div class="user">
                     <img src="${user.userImg}">
                     <div class="user-info">
@@ -217,8 +234,28 @@
             $(".messages").append(newMsg)
         }
 
+        // ABANDONAR SALA (RECARGA DE LA PÁGINA)
         $(document).on("click", ".leftRoom", ()=>{
             window.location.reload();
+        })
+
+        // MODIFICA ESTILO PARA MÓVIL
+        $(document).on("click", "#joinBtn", ()=>{
+            setTimeout(() => {
+                $(".nav").css("display", "none");
+            }, 10);
+        })
+
+        // MOSTRAR MENÚ USUARIOS CONECTADOS
+        $(document).on("click", "#roomName", ()=>{
+            $(".mobileUsersConnected").toggleClass("openMenu");
+            $(".usersBtn").toggleClass("block");
+        })
+
+        // OCULTAR MENÚ USUARIOS CONECTADOS
+        $(document).on("click", ".usersBtn", ()=>{
+            $(".mobileUsersConnected").toggleClass("openMenu");
+            $(".usersBtn").toggleClass("block");
         })
     </script>
 </body>

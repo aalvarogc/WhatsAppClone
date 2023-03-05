@@ -18,8 +18,7 @@ body{
     padding: 0;
 }
 #homeContainer{
-    background-color: #9200BF;
-    height: 89.5vh;
+    height: 91vh;
 }
 .container-userForm{
     display: flex;
@@ -82,7 +81,7 @@ body{
 }
 .whatsapp-container{
     position: relative;
-    height: 82vh;
+    height: 91vh;
     width: 100%;
     display: flex;
 }
@@ -135,6 +134,8 @@ body{
 #roomName{
     position: absolute;
     top: 0;
+    left: 19.5em;
+    right: 0;
     width: 50%;
     margin: 0 auto;
     text-align: center;
@@ -176,45 +177,6 @@ a{
 #btnLogin:hover a{
     transition: all .3s ease-in-out;
     color: black;
-}
-.usernameInput{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 45%;
-    left: 0;
-    width: 20vw;
-    height: 10vh;
-    background-color: #9200BF;
-    border-radius: 0% 20px 20px 0%;
-    border: 2px solid black;
-    border-left: none;
-    transform: translate(-100%);
-    transition: all .3s ease-in-out;
-}
-.showUsername{
-    transform: translate(0);
-}
-.rotateArrow{
-    transform: rotate(180deg);
-}
-#usernameInput, #usernameSubmit{
-    border: none;
-    outline: none;
-    padding: .3em;
-}
-.flecha{
-    position: absolute;
-    background-color: white;
-    right: -1.95em;
-    color: black;
-    padding: .5em;
-    border-radius: 0% 20px 20px 0%;
-    border: 2px solid black;
-    border-left: none;
-    cursor: pointer;
 }
 .userConnection{
     width: 80%;
@@ -287,4 +249,124 @@ a{
     cursor: pointer;
     font-size: 1.7em;
     transition: all .2s ease-in-out;
+}
+.fa-whatsapp{
+    font-size: 2.5em;
+    margin-right: .4em;
+}
+.mobileUsersConnected{
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    background-color: #7a0f9b;
+    height: 100vh;
+    width: 100vw;
+    transition: transform .2s ease-in-out;
+    transform: translate(100%);
+    z-index: 100;
+    padding: 2em;
+}
+.usersBtn{
+    position: fixed;
+    top: 2em;
+    right: 2em;
+    cursor: pointer;
+    z-index: 201;
+    font-size: 1.5em;
+    display: none;
+}
+.block{
+    display: block;
+}
+@media (max-width: 400px) {
+    .whatsapp-container{
+        display: flex;
+        height: 82vh;
+    }
+    #homeContainer{
+        height: 100vh;
+        margin: 0;
+        background-color: transparent;
+        backdrop-filter: blur(4px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        font-size: 1.4em;
+    }
+    .fa-whatsapp{
+        margin: 0;
+    }
+    .container-userForm{
+        height: fit-content;
+    }
+    .userForm{
+        width: 100%;
+    }
+    .avatar img{
+        width: 85%;
+    }
+    #joinBtn{
+        font-size: 12px;
+    }
+    .whatsapp-container{
+        height: 100vh;
+        flex-direction: column;
+        position: relative;
+    }
+    #roomName{
+        position: initial;
+        top: 0;
+        width: 100%;
+        border-radius: 0px;
+        margin: 0;
+    }
+    .users{
+        flex-basis: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .user{
+        padding: 1em;
+        background-color: #aa74c7;
+        border-radius: 5px;
+        border: 0;
+    }
+    .usersConnected{
+        display: none;
+    }
+    .openMenu{
+        display: flex;
+        transform: translate(0);
+    }
+    .leftRoom{
+        font-size: 1.2em;
+        border: none;
+        margin: 0;
+    }
+    .messagesCont{
+        flex-basis: 90%;
+        max-height: 88vh;
+    }
+    .messages{
+        margin: 0;
+        height: 95%;
+    }
+    #form{
+        margin-top: .5em;
+        margin-bottom: .5em;
+    }
 }
